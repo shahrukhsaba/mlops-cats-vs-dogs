@@ -22,11 +22,11 @@
 
 ## Documentation index
 
-**Start here:** [**docs/GETTING_STARTED.md**](docs/GETTING_STARTED.md) — step-by-step from **clone → run locally → deploy to Render**.
+**Start here:** [**docs/runbook.md**](docs/runbook.md) — runbook: **clone → run locally → deploy → verify** (M1–M5).
 
 | What you need | Document |
 |---------------|----------|
-| **Setup from scratch (clone → run locally)** | [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) |
+| **Setup from scratch (clone → run locally)** | [docs/runbook.md](docs/runbook.md) |
 | **Deploy to Render (or other cloud)** | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#rendercom-or-other-public-cloud) |
 | **Full doc index** | [docs/INDEX.md](docs/INDEX.md) |
 | API reference | [docs/API.md](docs/API.md) |
@@ -78,13 +78,13 @@ Full details: [docs/DEPLOYMENT.md § Monitoring stack](docs/DEPLOYMENT.md#monito
 1. **Clone** → `git clone <repo> && cd mlops-cats-vs-dogs`
 2. **Environment** → `python3 -m venv venv && source venv/bin/activate` (Windows: `venv\Scripts\activate`)
 3. **Install** → `pip install -r requirements.txt`
-4. **Data** → Download to `data/raw` (kagglehub, Kaggle CLI, or unzip); see [GETTING_STARTED](docs/GETTING_STARTED.md#4-get-the-dataset-and-prepare-splits).
+4. **Data** → Download to `data/raw` (kagglehub, Kaggle CLI, or unzip); see [runbook § 2](docs/runbook.md#2--data-download--preparation-m1).
 5. **Splits** → `PYTHONPATH=. python scripts/prepare_data.py`
 6. **Train** → `PYTHONPATH=. python scripts/train.py --epochs 3`
-7. **Run API** → Uvicorn, Docker, Compose, or Kubernetes; see [GETTING_STARTED § Run the API](docs/GETTING_STARTED.md#6-run-the-api-locally).
+7. **Run API** → Uvicorn, Docker, Compose, or Kubernetes; see [runbook § 4](docs/runbook.md#4--run-the-api-m2).
 8. **Deploy to Render** → Set `MODEL_URL` to a public `model.pt` URL; see [DEPLOYMENT § Render](docs/DEPLOYMENT.md#rendercom-or-other-public-cloud).
 
-**Full step-by-step (including dataset options and Render):** [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md).
+**Full step-by-step (including dataset options, CI/CD, monitoring, Render):** [docs/runbook.md](docs/runbook.md).
 
 ---
 
@@ -104,7 +104,7 @@ Full details: [docs/DEPLOYMENT.md § Monitoring stack](docs/DEPLOYMENT.md#monito
 ## Requirements
 
 - **Python** 3.9+ (3.11 recommended)
-- **Dataset:** [Kaggle Cats and Dogs](https://www.kaggle.com/datasets/bhavikjikadara/dog-and-cat-classification-dataset) — see [GETTING_STARTED § 4](docs/GETTING_STARTED.md#4-get-the-dataset-and-prepare-splits) for download options.
+- **Dataset:** [Kaggle Cats and Dogs](https://www.kaggle.com/datasets/bhavikjikadara/dog-and-cat-classification-dataset) — see [runbook § 2](docs/runbook.md#2--data-download--preparation-m1) for download options.
 - Run all commands from the **project root**; use `PYTHONPATH=.` when running Python scripts.
 
 ---
@@ -117,7 +117,7 @@ Full details: [docs/DEPLOYMENT.md § Monitoring stack](docs/DEPLOYMENT.md#monito
 ├── scripts/                 # download_data, prepare_data, train, smoke_test, deploy_k8s
 ├── tests/                   # pytest (preprocess + inference)
 ├── k8s/                     # Kubernetes Deployment + Service (+ README)
-├── docs/                    # INDEX.md, GETTING_STARTED.md, DEPLOYMENT.md, API.md
+├── docs/                    # INDEX.md, runbook.md, gap_analysis.md, smoke_test_gap_analysis.md, DEPLOYMENT.md, API.md
 ├── monitoring/              # Optional: Prometheus + Grafana
 ├── data/raw, data/processed # Dataset and splits (DVC)
 ├── models/                  # model.pt (after train)
@@ -133,13 +133,13 @@ Full details: [docs/DEPLOYMENT.md § Monitoring stack](docs/DEPLOYMENT.md#monito
 - **Git** for code; **DVC** for data/model (pipeline in `dvc.yaml`; `data/raw.dvc` for dataset).
 - **Model:** CNN in `src/model/cnn.py`; saved as `models/model.pt`.
 - **MLflow:** Params, metrics, confusion matrix, loss curves in `mlruns/`.
-- **Commands:** [GETTING_STARTED](docs/GETTING_STARTED.md) § 4–5.
+- **Commands:** [runbook](docs/runbook.md) § 2–3.
 
 ## M2: Model Packaging & Containerization
 
 - **API:** FastAPI — `/health`, `/predict` (image → label + probabilities), `/metrics`. Docs: `/docs`.
 - **Environment:** `requirements.txt` (pinned).
-- **Docker:** `Dockerfile`; build and run: [GETTING_STARTED § 6](docs/GETTING_STARTED.md#6-run-the-api-locally).
+- **Docker:** `Dockerfile`; build and run: [runbook § 4](docs/runbook.md#4--run-the-api-m2).
 
 ## M3: CI Pipeline
 

@@ -1,5 +1,7 @@
 # Assignment Requirements Verification
 
+**Quick runbook (setup, run, smoke test):** [docs/runbook.md](docs/runbook.md). **Gap analysis:** [docs/gap_analysis.md](docs/gap_analysis.md), [docs/smoke_test_gap_analysis.md](docs/smoke_test_gap_analysis.md).
+
 This document verifies that the project meets the stated assignment requirements. **Verification was performed by running the code and Docker** (see Runtime verification below).
 
 ---

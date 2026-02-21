@@ -1,6 +1,6 @@
 # MLOps Cats vs Dogs — Complete Runbook
 
-This runbook covers every step to set up, train, deploy, test, monitor, and submit the project.
+This runbook covers every step to set up, train, deploy, test, monitor, and submit the project. Commands are shown for **Windows (PowerShell)** first; **Linux/macOS (bash)** equivalents are given where they differ.
 
 ---
 
@@ -19,17 +19,21 @@ This runbook covers every step to set up, train, deploy, test, monitor, and subm
 
 ## 1 · Clone & Setup
 
+**Windows (PowerShell):**
 ```powershell
-# Clone
 git clone https://github.com/shahrukhsaba/mlops-cats-vs-dogs.git
 cd mlops-cats-vs-dogs
-
-# Virtual environment
 python -m venv venv
-.\venv\Scripts\activate        # Windows
-# source venv/bin/activate     # Linux/macOS
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-# Install dependencies
+**Linux/macOS (bash):**
+```bash
+git clone https://github.com/shahrukhsaba/mlops-cats-vs-dogs.git
+cd mlops-cats-vs-dogs
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -38,20 +42,40 @@ pip install -r requirements.txt
 ## 2 · Data Download & Preparation (M1)
 
 ### Option A — kagglehub (no API key)
+
+**Windows:** `$env:PYTHONPATH="."` then `python scripts/download_data.py`  
+**Linux/macOS:** `PYTHONPATH=. python scripts/download_data.py`
+
 ```powershell
+# Windows
 pip install kagglehub
 $env:PYTHONPATH="."
 python scripts/download_data.py
 ```
 
+```bash
+# Linux/macOS
+pip install kagglehub
+PYTHONPATH=. python scripts/download_data.py
+```
+
 ### Option B — Manual download
 1. Download from [Kaggle](https://www.kaggle.com/datasets/bhavikjikadara/dog-and-cat-classification-dataset)
-2. Extract into `data/raw/` so structure is `data/raw/cats/` and `data/raw/dogs/`
+2. Extract into `data/raw/` so structure is `data/raw/Cat/` and `data/raw/Dog/` (or `cats/` and `dogs/` per dataset).
 
 ### Prepare splits
+
+**Windows:** `$env:PYTHONPATH="."`; **Linux/macOS:** `PYTHONPATH=.` before `python`.
+
 ```powershell
+# Windows
 $env:PYTHONPATH="."
 python scripts/prepare_data.py
+```
+
+```bash
+# Linux/macOS
+PYTHONPATH=. python scripts/prepare_data.py
 ```
 
 **Output:** `data/processed/splits.json` with 80/10/10 train/val/test split.
@@ -134,7 +158,7 @@ curl.exe -X POST http://localhost:8000/predict -F "file=@path/to/cat.jpg"
 |--------|------|-------------|
 | GET | `/` | Landing page with links |
 | GET | `/health` | Health check |
-| POST | `/predict` | Image classification (multipart: [file](file:///c:/Users/koush/OneDrive/Documents/BITS%20Pilani/MLOPS/Assignment2/mlops-cats-vs-dogs/Dockerfile)) |
+| POST | `/predict` | Image classification (multipart: `file` = image) |
 | GET | `/metrics` | Prometheus-format metrics |
 | GET | `/docs` | Swagger UI |
 
@@ -450,3 +474,15 @@ mlops-cats-vs-dogs/
 ├── params.yaml                          # Training parameters (M1)
 └── requirements.txt                     # Pinned dependencies (M2)
 ```
+
+---
+
+## Related documentation
+
+| Document | Purpose |
+|----------|---------|
+| [gap_analysis.md](gap_analysis.md) | Per-milestone gap analysis and assignment coverage. |
+| [smoke_test_gap_analysis.md](smoke_test_gap_analysis.md) | Smoke test results and M1–M5 verification summary. |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Full deployment options (Render, K8s, monitoring). |
+| [API.md](API.md) | API reference and examples. |
+| [INDEX.md](INDEX.md) | Documentation index. |

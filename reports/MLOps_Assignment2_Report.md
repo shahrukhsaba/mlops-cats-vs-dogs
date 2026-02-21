@@ -174,8 +174,8 @@ DVC is used with a remote (e.g. S3/GCS) for large files; Git holds only `.dvc` p
 ├── Dockerfile, docker-compose.yml
 ├── .github/workflows/ci.yml, cd.yml, release.yml
 ├── requirements.txt, pytest.ini
-├── docs/INDEX.md, GETTING_STARTED.md, DEPLOYMENT.md, API.md
-├── RUN_STEPS.md, QUICKSTART.md (redirect to docs), VERIFICATION.md
+├── docs/INDEX.md, runbook.md, gap_analysis.md, smoke_test_gap_analysis.md, DEPLOYMENT.md, API.md
+├── RUN_STEPS.md, QUICKSTART.md, GETTING_STARTED.md (redirect to docs/runbook.md), VERIFICATION.md
 ├── reports/MLOps_Assignment2_Report.md
 └── docs/API.md, DEPLOYMENT.md
 ```

@@ -1,7 +1,7 @@
 # Quick start
 
-**This guide has been merged into the main getting-started doc.**
+**This guide has been consolidated into the runbook.**
 
-- **Run the API locally (Docker, Compose, Kubernetes):** [docs/GETTING_STARTED.md § 6](docs/GETTING_STARTED.md#6-run-the-api-locally)
-- **Full flow (clone → run → Render):** [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
+- **Run the API locally (Docker, Compose, Kubernetes):** [docs/runbook.md § 4](docs/runbook.md#4--run-the-api-m2)
+- **Full flow (clone → run → Render):** [docs/runbook.md](docs/runbook.md)
 - **All docs:** [docs/INDEX.md](docs/INDEX.md)
