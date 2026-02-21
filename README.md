@@ -7,6 +7,18 @@
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
 
 **BITS Pilani - MLOps Assignment 2 (S1-25_AIMLCZG523)**  
+
+### Group No 122
+
+| # | Group Member Name | BITS Email ID | Contribution |
+|---|-------------------|---------------|--------------|
+| 1 | SK SHAHRUKH SABA | 2024aa05401@wilp.bits-pilani.ac.in | 100% |
+| 2 | SANKHA CHAKRABORTY | 2024AA05393@wilp.bits-pilani.ac.in | 100% |
+| 3 | NEELASHA ROY | 2024aa05698@wilp.bits-pilani.ac.in | 100% |
+| 4 | ARUNAVA DUTTA | 2024aa05374@wilp.bits-pilani.ac.in | 100% |
+| 5 | BHUPENDRA KUMAR PAL | 2024aa05462@wilp.bits-pilani.ac.in | 100% |
+
+---
 **Use case:** Binary image classification (Cats vs Dogs) for a pet adoption platform.
 
 | # | Task | Marks | Status | Section |
